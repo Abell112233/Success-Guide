@@ -1,5 +1,20 @@
 {% extends "app/bloco.html" %}
 
 {% block bloco %}
-    
+    <main>
+        <div class="container">
+            <div class="row">
+                {% for area in area %}
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ area.imagem.url }}" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text text-center">{{ area.nome }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
 {% endblock %}
