@@ -7,3 +7,6 @@ def index(request):
         'area': area
     }
     return render(request, 'app/index.html', context)
+
+def inicial(request):
+    return render(request, 'app/inicial.html')
