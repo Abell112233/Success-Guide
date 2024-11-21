@@ -14,6 +14,7 @@ class Area(models.Model):
     nome = models.CharField(max_length=150)
     material = models.IntegerField()
     descricao = models.TextField()
+    imagem = models.ImageField(upload_to='area/', null=True, blank=True)
 
     def __str__ (self):
         return self.nome
