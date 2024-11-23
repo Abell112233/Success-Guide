@@ -10,3 +10,13 @@ def index(request):
 
 def inicial(request):
     return render(request, 'app/inicial.html')
+
+def perfil(request):
+    return render(request, 'app/perfil.html')
+
+def cursos(request):
+    cursos = models.Curso.objects.all()
+    context = {
+        'cursos': cursos
+    }
+    return render(request, 'app/cursos.html', context)
