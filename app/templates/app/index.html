@@ -6,12 +6,12 @@
             <div class="row">
                 {% for area in area %}
                     <div class="col-md-4">
-                        <div class="card" style="width: 18rem;">
+                        <a href="{% url 'cursos' area.id %}" class="card link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-0-hover" style="width: 18rem;">
                             <img class="card-img-top" src="{{ area.imagem.url }}" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text text-center">{{ area.nome }}</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
