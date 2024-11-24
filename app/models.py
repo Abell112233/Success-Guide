@@ -22,6 +22,8 @@ class Area(models.Model):
 class Curso(models.Model):
     nome = models.CharField(max_length=150)
     carga_horaria = models.IntegerField()
+    endereco = models.CharField(max_length=150)
+    link = models.URLField()
     area = models.ForeignKey('Area', on_delete=models.CASCADE)
 
     def __str__ (self):

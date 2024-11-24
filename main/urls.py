@@ -25,7 +25,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('inicial/', views.inicial, name='inicial'),
     path('perfil/', views.perfil, name='perfil'),
-    path('cursos/', views.cursos, name='cursos'),
+    path('cursos/<int:area_id>/', views.cursos, name='cursos'),
+    path('cadastro_curso/', views.cadastro_curso, name='cadastro_curso'),
+    path('editar_curso/<int:id>', views.editar_curso, name='editar_curso'),
+    path('deletar_curso/<int:id>', views.deletar_curso, name='deletar_curso'),
 ]
 
 if settings.DEBUG:
