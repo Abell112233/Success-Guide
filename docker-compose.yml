@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+
+    image: django_success
+    volumes:
+        - static_volume:/app/staticfiles
+        - ./media:/app/media
+
+    command: ./start
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/nginx/Dockerfile
+
+    image: nginx_success
+    volumes:
+        - static_volume:/app/staticfiles
+        - ./media:/app/media
+
+    ports:
+      - 85:80
+    restart: unless-stopped
+
+volumes:
+    static_volume:
+    media_volume:

@@ -1,12 +1,16 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from . import models
 from . import forms
 from django.shortcuts import render, redirect
 # Create your views here.
 def index(request):
     area = models.Area.objects.all()
+    paginator = Paginator(area, 3)
+    page = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page)
     context = {
-        'area': area
+        'area': page_obj
     }
     return render(request, 'app/index.html', context)
 
