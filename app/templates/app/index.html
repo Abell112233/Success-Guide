@@ -1,6 +1,47 @@
 {% extends "app/bloco.html" %}
 
 {% block bloco %}
+    <nav aria-label="...">
+        <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+            {% if area.has_previous %}
+                <a href="?page=1"><span class="page-link">First</span></a>
+            {% endif %}
+        </li>
+        <li class="page-item disabled">
+            {% if area.has_previous %}
+                <a href="?page={{ area.previous_page_number }}"><span class="page-link">Previous</span></a>
+            {% endif %}
+        </li>
+        <li class="page-item">
+            {% if area.has_previous %}
+                <a href="?page={{ area.previous_page_number }}"><span class="page-link">{{area.previous_page_number}}</span></a>
+            {% endif %}
+        </li>
+        <li class="page-item active">
+            <span class="page-link">
+                {{ area.number }}
+            <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        <li class="page-item">
+            {% if area.has_next %}
+                <a href="?page={{ area.next_page_number }}"><span class="page-link" >{{ area.next_page_number }}</span></a>
+            {% endif %}
+        </li>
+        <li class="page-item">
+            {% if area.has_next %}
+                <a href="?page={{ area.next_page_number }}"><span class="page-link" >Next</span></a>
+            {% endif %}
+        </li>
+        <li class="page-item">
+            {% if area.has_next %}
+
+                <a href="?page={{ area.paginator.num_pages }}"><span class="page-link" >Last</span></a>
+            {% endif %}
+        </li>
+        </ul>
+    </nav>
     <main>
         <div class="container">
             <div class="row">
