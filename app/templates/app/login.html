@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Success Guide</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: sans-serif;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+    }
+
+    @media screen and (max-width: 600px) {
+        body {
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    }
+
+    #particles-js {
+        height: 100%;
+    }
+
+    .loginBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 350px;
+        min-height: 200px;
+        background: #343a40;
+        border-radius: 10px;
+        padding: 40px;
+        box-sizing: border-box;
+    }
+
+    .user {
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        margin: 0;
+        padding: 0 0 20px;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .loginBox input {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .loginBox input[type="text"],
+    .loginBox input[type="password"] {
+        border: none;
+        border-bottom: 2px solid #ffffff;
+        outline: none;
+        height: 40px;
+        color: #fff;
+        background: transparent;
+        font-size: 16px;
+        padding-left: 20px;
+        box-sizing: border-box;
+    }
+
+    
+
+    .loginBox input[type="text"]:focus,
+    .loginBox input[type="password"]:focus {
+        border-bottom: 2px solid #42F3FA;
+    }
+
+    .inputBox {
+        position: relative;
+    }
+
+    .inputBox span {
+        position: absolute;
+        top: 10px;
+        color: #262626;
+    }
+
+    .loginBox input[type="submit"] {
+        border: none;
+        outline: none;
+        height: 40px;
+        font-size: 16px;
+        background: #e0009d;
+        color: #fff;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .loginBox a {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+    }
+
+    a:hover {
+        color: #ffffff;
+    }
+
+    p {
+        color: #ffffff;
+    }
+</style>
+
+<body>
+    <div class="loginBox"> <img class="user" src="../../../static/img/icone.png" height="100px" width="100px">
+        <h3>Entrar</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="inputBox"> 
+                <input id="username" type="text" name="username" placeholder="Nome"> 
+                <input id="password" type="password" name="password" placeholder="Senha"> 
+            </div> 
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+        </form> 
+        <div class="text-center">
+            <a href="{% url 'register_usuario' %}"><p style="color: #ffffff;">Cadastrar</p></a>
+        </div>
+        {% if messages %}
+            <div class="mt-3">
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+

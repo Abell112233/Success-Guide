@@ -29,6 +29,9 @@ urlpatterns = [
     path('cadastro_curso/', views.cadastro_curso, name='cadastro_curso'),
     path('editar_curso/<int:id>', views.editar_curso, name='editar_curso'),
     path('deletar_curso/<int:id>', views.deletar_curso, name='deletar_curso'),
+    path('register_usuario/', views.register_usuario, name='register_usuario'),
+    path('login_usuario/', views.login_usuario, name='login_usuario'),
+    path('logout/', views.logout_usuario, name='logout_usuario'),
 ]
 
 if settings.DEBUG:
