@@ -96,3 +96,19 @@ def register_usuario(request):
         form = forms.UsuarioForm()
 
     return render(request, 'app/register.html', {'form': form})
+
+def areas(request):
+    filtro = forms.FiltroForm(request.GET or None)
+
+    areas = models.Area.objects.all()
+
+    if filtro.is_valid():
+        if filtro.cleaned_data['nome']:
+            areas = areas.filter(nome__icontains=filtro.cleaned_data['nome'])
+
+
+    contexto = {
+        'areas': areas,
+        'filtro': filtro
+    }
+    return render(request, 'app/areas.html', contexto)

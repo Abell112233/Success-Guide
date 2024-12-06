@@ -27,18 +27,27 @@
                 <a class="nav-link" href="#" style="font-size: 30px;">Areas</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0 nav nav justify-content-end ">
-            {% csrf_token %}
-            <div>
-              <input type="text">{{ formularioFiltro.as_p }}
-              
-            </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-          </form>
         </div>
-      </nav>
-{% block bloco %}
-
-{% endblock %}
-</body>
-</html>
+    </nav>
+<main>
+    <form class="form-inline my-2 my-lg-0 nav  justify-content-end ">
+        {% csrf_token %}
+        {{ filtro.nome }}
+          
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+    <div class="container">
+        <div class="row">
+            {% for area in areas %}
+                <div class="col-md-4">
+                    <a href="{% url 'cursos' area.id %}" class="card link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-0-hover" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ area.imagem.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text text-center">{{ area.nome }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>

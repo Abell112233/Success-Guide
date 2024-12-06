@@ -24,3 +24,8 @@ class UsuarioForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'class': 'input-text js-input'}),
             'telefone': forms.TextInput(attrs={'class': 'input-text js-input'}),
         }
+
+class FiltroForm(forms.Form):
+    nome = forms.CharField(max_length=150, required=False,
+                           label='Título',
+                           widget=forms.TextInput(attrs={'placeholder': 'Nome', 'class': 'form-control'}))
