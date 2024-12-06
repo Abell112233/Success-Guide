@@ -1,13 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Usuario(models.Model):
-    nome = models.CharField(max_length=150)
+class Usuario(AbstractUser):
     email = models.EmailField()
     telefone = models.CharField(max_length=15)
-
+    
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='custom_user_set',  
+        blank=True,
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='custom_permission_user_set',  
+        blank=True,
+    )
+    
     def __str__(self):
-        return self.nome
+        return self.username
 
 
 class Area(models.Model):
