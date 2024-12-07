@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class Usuario(AbstractUser):
     email = models.EmailField()
     telefone = models.CharField(max_length=15)
+    nome = models.CharField(max_length=250)
     
     groups = models.ManyToManyField(
         'auth.Group',

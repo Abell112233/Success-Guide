@@ -23,7 +23,8 @@ def inicial(request):
 
 @login_required
 def perfil(request):
-    return render(request, 'app/perfil.html')
+    usuario = request.user
+    return render(request, 'app/perfil.html', {'usuario': usuario})
 
 @login_required
 def cursos(request, area_id):
@@ -35,6 +36,7 @@ def cursos(request, area_id):
     }
     return render(request, 'app/cursos.html', context)
 
+@login_required
 def cadastro_curso(request):
     if request.method == 'POST':
         form = forms.CursosForm(request.POST)
@@ -47,6 +49,7 @@ def cadastro_curso(request):
     
     return render(request, 'app/cadastro_curso.html', {'form': form},)
 
+@login_required
 def editar_curso(request, id):
     curso = models.Curso.objects.get(id=id)
     if request.method == 'POST':
@@ -63,6 +66,7 @@ def editar_curso(request, id):
 
     return render(request, 'app/cadastro_curso.html', {'form': form},)
 
+@login_required
 def deletar_curso(request, id):
     curso = models.Curso.objects.get(id=id)
     area_id = curso.area.id
@@ -97,6 +101,7 @@ def register_usuario(request):
 
     return render(request, 'app/register.html', {'form': form})
 
+@login_required
 def areas(request):
     filtro = forms.FiltroForm(request.GET or None)
 
