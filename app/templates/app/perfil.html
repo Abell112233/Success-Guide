@@ -10,7 +10,7 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Abell Fineghan</h4>
+                                <h4>{{ usuario.username }}</h4>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                                 <h6 class="mb-0">Nome completo</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Abell Fineghan de Oliveira França
+                                {{ usuario.nome }}
                             </div>
                         </div>
                         <hr>
@@ -33,7 +33,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                abellfineghan@gmail.com
+                                {{ usuario.email }}
                             </div>
                         </div>
                         <hr>
@@ -42,7 +42,7 @@
                                 <h6 class="mb-0">Telefone</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                (84)98164-9028
+                                {{ usuario.telefone }}
                             </div>
                         </div>
                         <hr>
@@ -60,8 +60,8 @@
                             <div class="card-body" >
                                 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2"></i>Tecnologia da Informação</h6>
                                 <small></small>
-                                <div class="progress mb-3" style="height: 5px">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress mb-3" style="height: 15px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
                                 </div>
                                 <a href="https://www.example.com">
                                     <div style="text-align: center;">

@@ -133,7 +133,15 @@
             <form method="post">
                 {% csrf_token %} 
                     <div class="inputBox">
-                        <input id="username" type="text" name="username" placeholder="Nome">
+                        <input id="username" type="text" name="username" placeholder="Username">
+                        {% if form.username.errors %}
+                            <div class="text-danger">
+                                {{ form.username.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="inputBox">
+                        <input id="nome" type="text" name="nome" placeholder="Nome Completo">
                         {% if form.nome.errors %}
                             <div class="text-danger">
                                 {{ form.nome.errors.0 }}
