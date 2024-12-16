@@ -18,12 +18,14 @@ class CursosForm(forms.ModelForm):
 class UsuarioForm(UserCreationForm):
     class Meta:
         model = Usuario
-        fields = ('username', 'nome', 'email', 'telefone', 'password1', 'password2')
+        fields = ('username', 'nome', 'email', 'telefone', 'password1', 'password2', 'imagem')
 
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'telefone': forms.TextInput(attrs={'class': 'input-text js-input'}),
             'nome': forms.TextInput(attrs={'class': 'input-text js-input'}),
+            'imagem': forms.FileInput(attrs={'class': 'form-control',}),
+
         }
 
 class FiltroForm(forms.Form):
