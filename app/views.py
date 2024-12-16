@@ -91,7 +91,7 @@ def logout_usuario(request):
 
 def register_usuario(request):
     if request.method == 'POST':
-        form = forms.UsuarioForm(request.POST)
+        form = forms.UsuarioForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Cadastro realizado com sucesso! Você já pode fazer login.')

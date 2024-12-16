@@ -6,6 +6,7 @@ class Usuario(AbstractUser):
     email = models.EmailField()
     telefone = models.CharField(max_length=15)
     nome = models.CharField(max_length=250)
+    imagem = models.ImageField(upload_to='usuario/', null=True, blank=True)
     
     groups = models.ManyToManyField(
         'auth.Group',

@@ -130,7 +130,7 @@
         <div class="loginBox "> 
             <img class="user" src="../../../static/img/icone.png" height="100px" width="100px">
             <h3>Cadastrar</h3>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %} 
                     <div class="inputBox">
                         <input id="username" type="text" name="username" placeholder="Username">
@@ -177,6 +177,15 @@
                         {% if form.password2.errors %}
                             <div class="text-danger">
                                 {{ form.password2.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="inputBox">
+                        <label for="formFile" class="form-label" style="color: white;">Escolha a foto de perfil</label>
+                        <input class="form-control" name="imagem" type="file" id="imagem" >
+                        {% if form.imagem.errors %}
+                            <div class="text-danger">
+                                {{ form.imagem.errors.0 }}
                             </div>
                         {% endif %}
                     </div>
