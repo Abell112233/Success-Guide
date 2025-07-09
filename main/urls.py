@@ -33,7 +33,6 @@ urlpatterns = [
     path('login_usuario/', views.login_usuario, name='login_usuario'),
     path('logout/', views.logout_usuario, name='logout_usuario'),
     path('areas/', views.areas, name='areas'),
-    path('test/', views.test, name='test'),
 ]
 
 if settings.DEBUG:
