@@ -1,6 +1,6 @@
 name: Django Continuous Integration
 
-on: [push, pull_request]
+on: pull_request
 
 jobs:
   continuous-integration:
