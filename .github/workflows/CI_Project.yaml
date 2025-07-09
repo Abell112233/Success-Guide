@@ -14,5 +14,6 @@ jobs:
           python-version: 3.x
       - name: install requirements
         run: |
-          pip install -r requirements.txt
-          python ./manage.py test app/tests
+          docker compose build
+          docker compose up -d
+          docker exec success-guide-django-1 python manage.py test app/tests 
