@@ -15,4 +15,4 @@ jobs:
       - name: install requirements
         run: |
           pip install -r requirements.txt
-          python ./manage.py app/tests
+          python ./manage.py test app/tests
