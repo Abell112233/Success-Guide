@@ -11,7 +11,7 @@ services:
         - static_volume:/app/staticfiles
         - ./media:/app/media
 
-    command: ./start
+    command: ./start | python manage.py test
     restart: unless-stopped
 
   nginx:
