@@ -6,11 +6,13 @@ jobs:
   continuous-integration:
     runs-on: ubuntu-latest
   
-  steps:
-    - uses: actions/checkout@v3
-    - name: Install Django
-      uses: actions/setup-python@v3
-      with:
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Django
+        uses: actions/setup-python@v3
+        with:
         python-version: 3.x
-    - name: install requirements
-      run: pip install -r requirements.txt
+      - name: install requirements
+        run: |
+          pip install -r requirements.txt
+          python ./manage.py app/tests
