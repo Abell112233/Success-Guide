@@ -19,9 +19,11 @@ jobs:
           docker exec success-guide-django-1 python manage.py test app/tests 
   
   deploy:
+    needs: continuous-integration
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
         env:
@@ -31,5 +33,5 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{secrets.TARGET_DIR}}
-          EXCLUDE: "./.github, **.env"
+          EXCLUDE: ".github/**,**.env"
 
