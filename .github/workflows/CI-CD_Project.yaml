@@ -1,10 +1,15 @@
 name: Django Continuous Integration And Continuous Deploy
 
-on: pull_request
+on:  
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
 
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
   
     steps:
       - uses: actions/checkout@v3
@@ -19,6 +24,7 @@ jobs:
           docker exec success-guide-django-1 python manage.py test app/tests 
   
   deploy:
+    if: github.event_name == 'push'
     needs: continuous-integration
     runs-on: ubuntu-latest
 
@@ -33,5 +39,5 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{secrets.TARGET_DIR}}
-          EXCLUDE: ".github/**,**.env"
+          EXCLUDE: ".github/**,**.env,.ssh/**"
 
