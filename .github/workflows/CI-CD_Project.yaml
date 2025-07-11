@@ -25,7 +25,6 @@ jobs:
   
   deploy:
     if: github.event_name == 'push'
-    needs: continuous-integration
     runs-on: ubuntu-latest
 
     steps:
