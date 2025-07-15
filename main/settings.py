@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:85']
+CSRF_TRUSTED_ORIGINS = ['http://44.211.253.91:85']
 
 # Application definition
 
