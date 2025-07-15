@@ -40,8 +40,8 @@ jobs:
           TARGET: ${{secrets.TARGET_DIR}}
           EXCLUDE: ".github/**,**.env,.ssh/**"
       - name: Subindo o container
-      - uses: appleboy/ssh-action@v1.2.2
-        secrets:
+        uses: appleboy/ssh-action@v1.2.2
+        with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
