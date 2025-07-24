@@ -29,12 +29,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Build Docker and Nginx image
+        run: |
+          docker build -t django_app:latest ./compose/django
+          docker build -t nginx_app:latest ./compose/nginx
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
-          SOURCE: "./"
+          SOURCE: "./docker_app:latest,./nginx_app:latest"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{secrets.TARGET_DIR}}
@@ -47,6 +51,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ${{ secrets.TARGET_DIR }}
+            echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" >> .env
+            echo "AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}" >> .env
+            sudo docker load -i django_app.tar
+            sudo docker load -i nginx_app.tar
             sudo docker compose down
             sudo docker compose build
             sudo docker compose up -d

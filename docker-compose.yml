@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./compose/django/Dockerfile
 
-    image: django_success
+    image: django_app:latest
     env_file:
       - .env
     volumes:
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: ./compose/nginx/Dockerfile
 
-    image: nginx_success
+    image: nginx_app:latest
     volumes:
         - static_volume:/app/staticfiles
         - ./media:/app/media
