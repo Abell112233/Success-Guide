@@ -37,15 +37,17 @@ jobs:
         run: |
           docker save django_app:latest -o django_app.tar
           docker save nginx_app:latest -o nginx_app.tar
+      - name: Organize deploy files
+        run: |
+          mkdir -p deploy
+          cp django_app.tar nginx_app.tar docker-compose.yml deploy/
+
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
-          SOURCE: |
-            django_app.tar
-            nginx_app.tar
-            docker-compose.yml
+          SOURCE: "./delpoy"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{secrets.TARGET_DIR}}
