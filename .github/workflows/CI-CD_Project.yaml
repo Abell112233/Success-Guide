@@ -60,8 +60,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ${{ secrets.TARGET_DIR }}
-            grep -qxF "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" .env || echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" >> .env
-            grep -qxF "AWS_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }}" .env || echo "AWS_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }}" >> .env
+            echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" >> .env
+            echo "AWS_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }}" >> .env
             sudo docker load -i django_app.tar
             sudo docker load -i nginx_app.tar
             sudo docker compose down
