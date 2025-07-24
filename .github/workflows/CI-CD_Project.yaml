@@ -31,14 +31,18 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build Docker and Nginx image
         run: |
-          docker build -t django_app:latest ./compose/django
-          docker build -t nginx_app:latest ./compose/nginx
+          docker build -t django_app:latest ./compose/django/Dockerfile
+          docker build -t nginx_app:latest ./compose/nginx/Dockerfile
+            - name: Save Docker Images
+        run: |
+          docker save django_app:latest -o django_app.tar
+          docker save nginx_app:latest -o nginx_app.tar
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
-          SOURCE: "./docker_app:latest,./nginx_app:latest"
+          SOURCE: "./django_app.tar,./nginx_app.tar"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{secrets.TARGET_DIR}}
@@ -51,8 +55,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ${{ secrets.TARGET_DIR }}
-            echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" >> .env
-            echo "AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}" >> .env
+            grep -qxF "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" .env || echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" >> .env
+            grep -qxF "AWS_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }}" .env || echo "AWS_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }}" >> .env
             sudo docker load -i django_app.tar
             sudo docker load -i nginx_app.tar
             sudo docker compose down
